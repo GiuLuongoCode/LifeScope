@@ -30,6 +30,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "@flaticon/flaticon-uicons": "^3.0.0"
+    "@flaticon/flaticon-uicons": "^3.0.0",
+    "axios": "^1.6.2"
   }
 }
