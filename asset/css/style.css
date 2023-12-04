@@ -7,8 +7,8 @@
 }
 
 .InputContainer {
-  width: 210px;
-  height: 50px;
+  width: max-content;
+  height: max-content;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,6 +34,10 @@
 }
 
 .apartment {
-  width: 10%;
+  width: 37px;
   margin: 0.4rem;
+}
+
+.button {
+  border-width: 0;
 }
