@@ -3,7 +3,7 @@
 import container from './container';
 import searchText from './searchText';
 import button from './button';
-
+import fetchData from '../util/api';
 
 const searchField = searchText();
 const searchButton = button();
@@ -18,11 +18,15 @@ export default() => {
 
     searchArea.addEventListener("input", () => {
         searchButton.disabled = false;
+        // searchButton.style.backgroundColor = 
     });
 
-    searchArea.addEventListener("click", () => {
-        if (searchField.value != null){
-            console.log("L'utente ha cercato questo ", searchField.value)
+    searchArea.addEventListener("click", (event) => {
+        if (event.target.tagName === "IMG"){
+            if (searchField.value != null){
+                fetchData(searchField.value);
+                searchButton.disabled = true;
+            }
         }
     });
 
