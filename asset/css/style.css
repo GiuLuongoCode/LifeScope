@@ -57,3 +57,42 @@
 .button:enabled {
   background: linear-gradient(to bottom, rgb(227, 213, 255), rgb(255, 231, 231));
 }
+
+
+.test-container .resultBox{
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+/* .test-container.active .resultBox{
+  padding: 10px 8px;
+  opacity: 1;
+  pointer-events: auto;
+} */
+
+.resultBox li{
+  list-style: none;
+  padding: 8px 12px;
+  /* display: none; */
+  color: #661818;
+  width: 100%;
+  cursor: default;
+  border-radius: 3px;
+}
+
+/* .InputContainer.active .resultBox li{
+  display: block;
+} */
+.resultBox li:hover{
+  background: #661818;
+}
+
+
+.test-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
