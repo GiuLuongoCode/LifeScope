@@ -2,15 +2,14 @@
 
 import searchText from './searchText';
 import button from './button';
+import card from './card';
 import { fetchData } from '../util/api';
 import { autoComplete } from '../util/api';
 import form from './form';
-const mainContainer = document.createElement("div");
 const searchField = searchText();
 const searchButton = button();
 
 export default() => {
-    mainContainer.classList.add("provaContainer");
     const searchAutoComplete = document.createElement("div");
     searchAutoComplete.id = "auto-complete";
     const searchArea = document.createElement("div");
@@ -31,6 +30,7 @@ export default() => {
     searchArea.addEventListener("keyup", () => {
         const listSearchSuggest = document.getElementById("list-search");
         let searchTerm = searchField.value.trim();
+        const testContainer = document.getElementById("card-container");
     autoComplete(searchTerm)
         .then(response => {
             response.data._embedded["city:search-results"].forEach(city => {
@@ -39,11 +39,18 @@ export default() => {
                 listItem.addEventListener('click', function() {
                     searchField.value = city.matching_full_name;
                     listSearchSuggest.innerHTML = '';
-                    let cityName = this.textContent.split(", ")[0].toLowerCase();
-                    if (cityName.includes(" ")) {
-                        cityName = cityName.replaceAll(" ", "-");
+                    let cityName = this.textContent.split(", ")[0];
+                    let cityFetchData = cityName.toLowerCase();
+                    if (cityFetchData.includes(" ")) {
+                        cityFetchData = cityFetchData.replaceAll(" ", "-");
                     }
-                    fetchData(cityName).then(response => console.log(response.data));
+                    fetchData(cityFetchData).then(response => response.data.categories.forEach(category => {
+                        if ((category.name === "Housing") || (category.name === "Safety" ) || (category.name === "Healthcare")){
+                            const cardElement = card(category.name, cityName, category.score_out_of_10);
+                            testContainer.appendChild(cardElement);
+                        }
+
+                    }));
                 });
                 listSearchSuggest.appendChild(listItem);
             });
