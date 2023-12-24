@@ -1,12 +1,9 @@
-import container from './component/container';
-import path from './component/path';
-import title from './component/title';
+import container from './components/container';
+import title from './components/title';
 import '../asset/css/style.css';
-import searchArea from './component/searchArea';
+import searchArea from './components/searchArea';
 
 const titleH1 = title();
-// const input = searchText("input");
-// const inputContainer = container("InputContainer");
 const mainContainer = container("mainBox");
 const containerBig = document.createElement("div");
 containerBig.classList.add("test-container");
@@ -16,9 +13,6 @@ searchResult.classList.add("resultBox");
 const listSearchSuggest = document.createElement("ul");
 listSearchSuggest.id = "list-search";
 const search = searchArea();
-// inputContainer.appendChild(input);
-// inputContainer.appendChild(btn);
-// inputContainer.appendChild(searchIcon);
 containerBig.appendChild(search);
 searchResult.appendChild(listSearchSuggest);
 containerBig.appendChild(searchResult);
