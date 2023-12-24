@@ -12,8 +12,6 @@ export async function fetchData(cityName) {
 }
 
 export async function autoComplete(searchTerm){
-  console.log("AUTO COMPLETE", searchTerm);
-  const suggestionsList = [];
   try {
     const response = await axios.get('https://api.teleport.org/api/cities', {params: {search: searchTerm}});
     return response;
