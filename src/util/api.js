@@ -3,10 +3,9 @@ const axios = require('axios');
 
 export async function fetchData(cityName) {
   try {
-    const response = await axios.get('https://api.teleport.org/api/urban_areas/slug:los-angeles/scores/');
-    const data = response.data;
-
-    console.log(data);
+    const url = 'https://api.teleport.org/api/urban_areas/slug:' + cityName + '/scores/'
+    const response = await axios.get(url);
+    return response;
   } catch (error) {
     console.error('Errore durante la richiesta:', error.message);
   }

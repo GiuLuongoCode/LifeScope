@@ -1,6 +1,5 @@
 // Component che gestisce la search Area. Si occupa di gestire il textField e il button per la ricerca della città.
 
-import container from './container';
 import searchText from './searchText';
 import button from './button';
 import { fetchData } from '../util/api';
@@ -24,38 +23,29 @@ export default() => {
     formInput.appendChild(searchField);
     searchArea.appendChild(formInput);
     searchArea.appendChild(searchButton);
-    // mainContainer.appendChild(searchResult);
-    // searchArea.appendChild(mainContainer);
 
     searchArea.addEventListener("input", () => {
         searchButton.disabled = false;
     });
 
     searchArea.addEventListener("keyup", () => {
-        const searchResult = document.getElementById("search-result");
-        // searchResult.classList.add("resultBox");
         const listSearchSuggest = document.getElementById("list-search");
-        console.log(listSearchSuggest);
-        console.log(searchResult);
         let searchTerm = searchField.value.trim();
-    // Effettua la richiesta alle API di Teleport utilizzando Axios
     autoComplete(searchTerm)
         .then(response => {
-            // Estrai e visualizza i suggerimenti
-            // searchResult.innerHTML = list;
-
             response.data._embedded["city:search-results"].forEach(city => {
                 var listItem = document.createElement('li');
                 listItem.textContent = city.matching_full_name;
                 listItem.addEventListener('click', function() {
                     searchField.value = city.matching_full_name;
                     listSearchSuggest.innerHTML = '';
-                 // Nascondi la lista dei suggerimenti
+                    let cityName = this.textContent.split(", ")[0].toLowerCase();
+                    if (cityName.includes(" ")) {
+                        cityName = cityName.replaceAll(" ", "-");
+                    }
+                    fetchData(cityName).then(response => console.log(response.data));
                 });
                 listSearchSuggest.appendChild(listItem);
-                // listSearchSuggest.classList.add("active");
-                // searchResult.classList.add("active");
-                // searchArea.classList.add("active");
             });
         })
         .catch(error => console.error('Errore nella richiesta:', error));

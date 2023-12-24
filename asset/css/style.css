@@ -61,8 +61,8 @@
 
 .test-container .resultBox{
   padding: 0;
-  opacity: 0;
-  pointer-events: none;
+  /* opacity: 0; */
+  /* pointer-events: none; */
   max-height: 280px;
   overflow-y: auto;
 }
