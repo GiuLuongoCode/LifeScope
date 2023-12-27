@@ -1,3 +1,4 @@
+require('dotenv').config();
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
@@ -33,10 +34,10 @@ module.exports = {
         ],
       },
     plugins: [
-    new HtmlWebpackPlugin({
-      title: "Webpack Output",
-    }),
     new Dotenv(),
+    new HtmlWebpackPlugin({
+      title: process.env.APP_TITLE,
+    }),
   ],
 };
 
