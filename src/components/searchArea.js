@@ -3,10 +3,11 @@ import button from "./button";
 import stats from "./stats";
 import { fetchData, autoComplete } from "../util/api";
 import form from "./form";
-import _ from "lodash";
+import _, { result } from "lodash";
 
 const searchField = searchText();
 const searchButton = button();
+let indexSuggestList = 0;
 
 export default () => {
   const searchAutoComplete = document.createElement("div");
@@ -25,14 +26,15 @@ export default () => {
     searchButton.disabled = false;
   });
 
-  searchArea.addEventListener("keyup", _.debounce(async () => {
+  searchArea.addEventListener("keypress", _.debounce(async () => {
     const listSearchSuggest = document.getElementById("list-search");
     let searchTerm = searchField.value.trim();
 
     try {
       const response = await autoComplete(searchTerm);
       const cities = _.get(response, 'data._embedded["city:search-results"]', []);
-      
+      const resultBox = document.getElementById('search-result');
+      resultBox.classList.add("active");
       listSearchSuggest.innerHTML = "";
       cities.forEach((city) => {
         const listItem = document.createElement("li");
@@ -40,6 +42,37 @@ export default () => {
         listItem.addEventListener("click", () => handleCityClick(city));
         listSearchSuggest.appendChild(listItem);
       });
+
+      searchField.addEventListener("keydown", (event) => {
+        const elements = document.querySelectorAll("li");
+        const {key} = event;
+        let isKeyDown = false;
+        let isKeyEnter = false;
+        if (key == "ArrowUp"){
+          isKeyDown = true;
+          if (indexSuggestList === -1) indexSuggestList = 0;
+          indexSuggestList = ((indexSuggestList - 1) + elements.length) % elements.length;
+        }
+        else if (key == "ArrowDown"){
+          isKeyDown = true;
+          indexSuggestList = (indexSuggestList + 1) % elements.length;
+        }
+        else if (key == "Enter"){
+          event.preventDefault();
+          isKeyEnter = true;
+        }
+        else {
+          isKeyDown = false;
+        }
+        if (elements && (isKeyDown || isKeyEnter)) {
+          if (isKeyDown)
+          elements.forEach((element) => element.classList.remove("hover"));
+          elements[indexSuggestList].classList.add("hover");
+          isKeyDown = false;
+          if (isKeyEnter) elements[indexSuggestList].click();
+        }
+      });
+
     } catch (error) {
       console.error("Error on request: ", error);
     }
@@ -67,7 +100,8 @@ export default () => {
         categories.map((category) => category.color),
         summary
       );
-
+      const resultBox = document.getElementById('search-result');
+      resultBox.classList.remove("active");
       const testContainer = document.getElementById("card-container");
       testContainer.appendChild(statistics);
     });

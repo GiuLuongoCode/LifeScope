@@ -9,7 +9,7 @@ const containerBig = document.createElement("div");
 const containerCard = document.createElement("div");
 containerCard.id = "card-container";
 containerCard.classList.add("card-container");
-containerBig.classList.add("test-container");
+containerBig.classList.add("search-container");
 const searchResult = document.createElement("div");
 searchResult.id = "search-result";
 searchResult.classList.add("resultBox");
