@@ -37,6 +37,13 @@ module.exports = {
     new Dotenv(),
     new HtmlWebpackPlugin({
       title: process.env.APP_TITLE,
+      meta: {
+        // TODO: update description
+        'description': {name: 'description', content: "LifeScope description"},
+        'og:title': {property: 'og:title', content: process.env.APP_TITLE},
+        'og:type': {property: 'og:type', content: 'website'}
+      },
+      favicon: 'asset/img/lifeScope.ico'
     }),
   ],
 };
