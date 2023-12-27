@@ -8,7 +8,7 @@ export async function fetchData(cityName) {
     const response = await axios.get(url);
     return response;
   } catch (error) {
-    console.error('Errore durante la richiesta:', error.message);
+    console.error('Errore on request:', error.message);
   }
 }
 

@@ -1,11 +1,10 @@
-// Component che gestisce la search Area. Si occupa di gestire il textField e il button per la ricerca della città.
-
 import searchText from "./searchText";
 import button from "./button";
 import stats from "./stats";
-import { fetchData } from "../util/api";
-import { autoComplete } from "../util/api";
+import { fetchData, autoComplete } from "../util/api";
 import form from "./form";
+import _ from "lodash";
+
 const searchField = searchText();
 const searchButton = button();
 
@@ -26,50 +25,53 @@ export default () => {
     searchButton.disabled = false;
   });
 
-  searchArea.addEventListener("keyup", () => {
+  searchArea.addEventListener("keyup", _.debounce(async () => {
     const listSearchSuggest = document.getElementById("list-search");
     let searchTerm = searchField.value.trim();
-    const testContainer = document.getElementById("card-container");
-    autoComplete(searchTerm)
-      .then((response) => {
-        response.data._embedded["city:search-results"].forEach((city) => {
-          var listItem = document.createElement("li");
-          listItem.textContent = city.matching_full_name;
-          listItem.addEventListener("click", function () {
-            searchField.value = city.matching_full_name;
-            listSearchSuggest.innerHTML = "";
-            let cityName = this.textContent.split(", ")[0];
-            let cityFetchData = cityName.toLowerCase();
-            if (cityFetchData.includes(" ")) {
-              cityFetchData = cityFetchData.replaceAll(" ", "-");
-            }
-            fetchData(cityFetchData).then((response) => {
-              const statistics = stats(
-                response.data.categories.map((category) => category.name),
-                response.data.categories.map(
-                  (category) => category.score_out_of_10
-                ),
-                response.data.categories.map((category) => category.color),
-                response.data.summary
-              );
-              console.log("Stats", statistics);
-              testContainer.appendChild(statistics);
-            });
-          });
-          listSearchSuggest.appendChild(listItem);
-        });
-      })
-      .catch((error) => console.error("Errore nella richiesta:", error));
-  });
+
+    try {
+      const response = await autoComplete(searchTerm);
+      const cities = _.get(response, 'data._embedded["city:search-results"]', []);
+      
+      listSearchSuggest.innerHTML = "";
+      cities.forEach((city) => {
+        const listItem = document.createElement("li");
+        listItem.textContent = city.matching_full_name;
+        listItem.addEventListener("click", () => handleCityClick(city));
+        listSearchSuggest.appendChild(listItem);
+      });
+    } catch (error) {
+      console.error("Error on request: ", error);
+    }
+  }, 300));
 
   searchArea.addEventListener("click", (event) => {
-    if (event.target.tagName === "IMG") {
-      if (searchField.value != null) {
-        fetchData(searchField.value);
-        searchButton.disabled = true;
-      }
+    if (event.target.tagName === "IMG" && searchField.value) {
+      fetchData(searchField.value);
+      searchButton.disabled = true;
     }
   });
+
+  const handleCityClick = (city) => {
+    const listSearchSuggest = document.getElementById("list-search");
+    searchField.value = city.matching_full_name;
+    listSearchSuggest.innerHTML = "";
+    const cityName = _.head(city.matching_full_name.split(", "));
+    const cityFetchData = cityName.toLowerCase().replace(/\s/g, "-");
+
+    fetchData(cityFetchData).then((response) => {
+      const { categories, summary } = response.data;
+      const statistics = stats(
+        categories.map((category) => category.name),
+        categories.map((category) => category.score_out_of_10),
+        categories.map((category) => category.color),
+        summary
+      );
+
+      const testContainer = document.getElementById("card-container");
+      testContainer.appendChild(statistics);
+    });
+  };
 
   return searchArea;
 };
