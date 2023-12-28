@@ -1,5 +1,5 @@
 export default (cssClass) => {
     const element = document.createElement("div");
-    element.classList = cssClass
+    if (cssClass) element.classList = cssClass
     return element;
 };

@@ -1,7 +1,8 @@
 import Chart from 'chart.js/auto'
+import container from './container';
 
 export default (categoryNames, scores, colors, summary) => {
-    const statsDiv = document.createElement("div");
+    const statsDiv = container();
     const statsParagraph = document.createElement("p");
     statsParagraph.innerHTML = summary;
     const element = document.createElement("canvas");
