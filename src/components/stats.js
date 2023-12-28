@@ -3,11 +3,9 @@ import container from './container';
 
 export default (categoryNames, scores, colors, summary) => {
     const statsDiv = container();
-    const statsParagraph = document.createElement("p");
-    statsParagraph.innerHTML = summary;
     const element = document.createElement("canvas");
     statsDiv.appendChild(statsParagraph);
-    statsDiv.appendChild(element);
+    statsDiv.appendChild(summary);
     const ctx = element.getContext("2d");
     new Chart(ctx, {
         type: 'bar',

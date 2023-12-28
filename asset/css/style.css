@@ -111,8 +111,12 @@ body {
   flex-direction: column;
 }
 
+p {
+  width: 100%;
+}
+
 @media screen and (max-width: 600px) {
-  .stats-container {
+  .stats-container div{
     display: flex;
     flex-direction: column;
   }

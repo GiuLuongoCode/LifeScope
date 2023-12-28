@@ -42,7 +42,7 @@
     <a href="https://github.com/GiuLuongoCode/LifeScope"><strong>Explore the project »</strong></a>
     <br />
     <br />
-    <a href="">View Demo</a>
+    <a href="https://giuluongocode.github.io/LifeScope/">View Demo</a>
     ·
     <a href="https://github.com/GiuLuongoCode/LifeScope/issues">Report Bug</a>
     ·

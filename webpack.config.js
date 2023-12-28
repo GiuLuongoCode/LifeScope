@@ -38,8 +38,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: process.env.APP_TITLE,
       meta: {
-        // TODO: update description
-        'description': {name: 'description', content: "LifeScope description"},
+        'description': {name: 'description', content: "LifeScope is an application that allows you to explore and obtain information about the quality of life in cities around the world. Using the external Teleport service, you can enter the name of a city and receive detailed data covering various aspects of urban life."},
         'og:title': {property: 'og:title', content: process.env.APP_TITLE},
         'og:type': {property: 'og:type', content: 'website'}
       },
