@@ -30,7 +30,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
+  <a href="https://github.com/GiuLuongoCode/LifeScope/">
     <img src="asset/img/readme/lifeScope.jpg" alt="Logo" width="80" height="80">
   </a>
 
@@ -39,14 +39,14 @@
   <p align="center">
     An app to measure the quality of life in cities
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/GiuLuongoCode/LifeScope"><strong>Explore the project »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="">View Demo</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/GiuLuongoCode/LifeScope/issues">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/GiuLuongoCode/LifeScope/issues">Request Feature</a>
   </p>
 </div>
 
@@ -84,7 +84,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]]()
 
 LifeScope is an application that allows you to explore and obtain information about the quality of life in cities around the world. Using the external Teleport service, you can enter the name of a city and receive detailed data covering various aspects of urban life.
 
@@ -118,7 +118,7 @@ You must have installed npm. To do this run the following command in a terminal.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/GiuLuongoCode/LifeScope.git
    ```
 2. Install NPM packages
    ```sh
@@ -198,9 +198,9 @@ Don't forget to give the project a star! Thanks again!
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+[@GiuLuongoCode](![[Github]][Github-url]) - ![Github]
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/GiuLuongoCode/LifeScope](https://github.com/GiuLuongoCode/LifeScope)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -209,15 +209,15 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
+[contributors-url]: https://github.com/GiuLuongoCode/LifeScope/contributors
 [forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
+[forks-url]: https://github.com/GiuLuongoCode/LifeScope/network/members
 [stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
+[stars-url]: https://github.com/GiuLuongoCode/LifeScope/stargazers
 [issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
+[issues-url]: https://github.com/GiuLuongoCode/LifeScope/issues
 [license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[license-url]: https://github.com/GiuLuongoCode/LifeScope/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: asset/img/readme/screenshot.png
@@ -228,3 +228,5 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [Axios-url]: https://axios-http.com/docs/intro
 [Lodash]: https://img.shields.io/badge/Lodash-3492FF?style=for-the-badge&logo=lodash&logoColor=white
 [Lodash-url]: https://lodash.com/
+[Github]: https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white
+[Github-url]: https://github.com/GiuLuongoCode
