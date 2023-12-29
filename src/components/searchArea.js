@@ -86,7 +86,7 @@ const handleCityClick = (city, searchField) => {
 };
 
 export default () => {
-  let indexSuggestList = -1;
+  let indexSuggestList = 0;
   const searchArea = container("InputContainer");
   searchArea.id = "auto-complete";
   
